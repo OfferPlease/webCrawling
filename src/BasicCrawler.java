@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
@@ -9,7 +8,6 @@ import org.apache.http.HttpStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.collect.ImmutableList;
 
 import edu.uci.ics.crawler4j.crawler.Page;
 import edu.uci.ics.crawler4j.crawler.WebCrawler;
@@ -45,7 +43,7 @@ public class BasicCrawler extends WebCrawler {
 
         if(!href.startsWith(myDomain)){
             status = "N_OK";
-        };
+        }
         List<String> input = Arrays.asList(originUrl, status);
         statistics.writeToUrl_newSite(input);
         return status.equals("OK");
