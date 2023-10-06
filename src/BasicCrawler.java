@@ -20,7 +20,7 @@ public class BasicCrawler extends WebCrawler {
     private static final Pattern filters = Pattern.compile(
             ".*(\\.(css|js|mid|mp2|mp3|mp4|wav|avi|mov|mpeg|ram|m4v" +
                     "|rm|smil|wmv|swf|wma|zip|rar|gz))$");
-    private static final Pattern binaryPatterns = Pattern.compile(".*(\\.(doc|pdf|bmp|gif|jpe?g|png|tiff?))$");
+    //  private static final Pattern binaryPatterns = Pattern.compile(".*(\\.(doc|pdf|bmp|gif|jpe?g|png|tiff?))$");
     private final String myDomain;
     private final CrawlerStatistics statistics;
     public BasicCrawler(CrawlerStatistics statistics) {
@@ -62,7 +62,7 @@ public class BasicCrawler extends WebCrawler {
         int size = 0;
         String contentType = null;
         // deal with binary data
-        if (binaryPatterns.matcher(url).matches() || ((page.getParseData() instanceof BinaryParseData))) {
+        if (page.getParseData() instanceof BinaryParseData) {
             size = page.getContentData().length;
             contentType = page.getContentType();
         }

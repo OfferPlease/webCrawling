@@ -36,19 +36,18 @@ public class CrawlerStatistics {
     }
 
     private File createFile(String filename){
-        try {
-            File fileObj = new File(filename);
-            if (fileObj.createNewFile()) {
-                System.out.println("File created: " + fileObj.getName());
-                return fileObj;
-            } else {
-                System.out.println("File already exists.");
-            }
+        File file = new File(filename);
+
+        try (FileWriter fileWriter = new FileWriter(file)) {
+            // If the file exists, its content will be overwritten.
+            // If the file doesn't exist, it will be created.
+            fileWriter.write("");
+            System.out.println("File created/overwritten successfully!");
         } catch (IOException e) {
-            System.out.println("An error occurred.");
+            System.out.println("An error occurred while writing to the file.");
             e.printStackTrace();
         }
-        return null;
+        return file;
     }
 
 }

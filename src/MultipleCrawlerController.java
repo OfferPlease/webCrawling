@@ -28,7 +28,9 @@ public class MultipleCrawlerController {
         config1.setPolitenessDelay(500);
         config1.setMaxPagesToFetch(20000);
         config1.setMaxDepthOfCrawling(16);
-
+        // Since images are binary content, we need to set this parameter to
+        // true to make sure they are included in the crawl.
+        config1.setIncludeBinaryContentInCrawling(true);
 
         // We will use different PageFetchers for the two crawlers.
         PageFetcher pageFetcher1 = new PageFetcher(config1);
@@ -40,7 +42,6 @@ public class MultipleCrawlerController {
 
         CrawlController controller1 = new CrawlController(config1, pageFetcher1, robotstxtServer);
 
-
         CrawlerStatistics statistics = new CrawlerStatistics();
 
         controller1.addSeed("https://www.usatoday.com/");
@@ -49,7 +50,7 @@ public class MultipleCrawlerController {
         CrawlController.WebCrawlerFactory<BasicCrawler> factory1 = () -> new BasicCrawler(statistics);
 
         // The first crawler will have 5 concurrent threads and the second crawler will have 7 threads.
-        controller1.startNonBlocking(factory1, 5);
+        controller1.startNonBlocking(factory1, 7);
 
 
         controller1.waitUntilFinish();
