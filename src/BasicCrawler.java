@@ -86,7 +86,7 @@ public class BasicCrawler extends WebCrawler {
     @Override
     protected void handlePageStatusCode(WebURL webUrl, int statusCode, String statusDescription) {
         // write fetched url and status code
-        List<String> rowData =Arrays.asList(webUrl.getURL(), String.valueOf(HttpStatus.SC_OK));
+        List<String> rowData =Arrays.asList(webUrl.getURL(), String.valueOf(statusCode));
         statistics.writeTo_newSite(rowData);
         if(statusCode != HttpStatus.SC_OK){
             if (statusCode == HttpStatus.SC_NOT_FOUND) {
