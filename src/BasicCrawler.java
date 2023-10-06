@@ -40,6 +40,9 @@ public class BasicCrawler extends WebCrawler {
         if(referringPage.getContentType().contains("application.json")){
             status = "N_OK";
         }
+        if(referringPage.getContentType().contains("application/json")){
+            status = "N_OK";
+        }
 
         if(!href.startsWith(myDomain)){
             status = "N_OK";
